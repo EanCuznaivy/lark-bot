@@ -1,4 +1,5 @@
 using Ean.LarkBot.Core;
+using Ean.LarkBot.WebApi.ContentProviders;
 using Microsoft.OpenApi.Models;
 using Volo.Abp.AspNetCore;
 using Volo.Abp.Modularity;
@@ -25,5 +26,7 @@ public class LarkBotWebApiModule : AbpModule
                 options.CustomSchemaIds(type => type.FullName);
             }
         );
+
+        services.AddTransient<IReplyContentProvider, TransferContentProvider>();
     }
 }

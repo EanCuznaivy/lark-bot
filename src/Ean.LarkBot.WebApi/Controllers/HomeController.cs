@@ -4,6 +4,7 @@ using Ean.LarkBot.Core;
 using Ean.LarkBot.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Volo.Abp.EventBus.Local;
 
 namespace Ean.LarkBot.WebApi.Controllers;
 
@@ -12,14 +13,14 @@ namespace Ean.LarkBot.WebApi.Controllers;
 public class HomeController : ControllerBase
 {
     private readonly IDecryptService _decryptService;
-    private readonly ILarkService _larkService;
     private readonly LarkBotOptions _larkBotOptions;
+    private readonly ILocalEventBus _localEventBus;
 
-    public HomeController(IDecryptService decryptService, ILarkService larkService,
-        IOptionsSnapshot<LarkBotOptions> larkBotOptions)
+    public HomeController(IDecryptService decryptService,
+        IOptionsSnapshot<LarkBotOptions> larkBotOptions, ILocalEventBus localEventBus)
     {
         _decryptService = decryptService;
-        _larkService = larkService;
+        _localEventBus = localEventBus;
         _larkBotOptions = larkBotOptions.Value;
     }
 
@@ -48,7 +49,7 @@ public class HomeController : ControllerBase
             if (!string.Equals(signature.ToString(), calculatedSignature, StringComparison.CurrentCultureIgnoreCase))
                 return Problem();
             var eventDto = JsonSerializer.Deserialize<EventDto>(body)!;
-            await _larkService.ProcessEvent(eventDto);
+            await _localEventBus.PublishAsync(eventDto);
             return Ok();
         }
 
