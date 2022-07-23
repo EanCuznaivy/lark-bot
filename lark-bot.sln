@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ean.LarkBot.WebApi", "src\Ean.LarkBot.WebApi\Ean.LarkBot.WebApi.csproj", "{C8730F6D-88B5-46C9-82CD-2C1813529B21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ean.LarkBot.Core", "src\Ean.LarkBot.Core\Ean.LarkBot.Core.csproj", "{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0CBC1276-6021-4B0E-8337-BEF45E69053C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{27186F05-FF08-4CFD-AF06-4141A60E16E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ean.LarkBot.Core.Tests", "test\Ean.LarkBot.Core.Tests\Ean.LarkBot.Core.Tests.csproj", "{BA658E62-0FD1-4308-9016-1BB7759FBED9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8730F6D-88B5-46C9-82CD-2C1813529B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8730F6D-88B5-46C9-82CD-2C1813529B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8730F6D-88B5-46C9-82CD-2C1813529B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8730F6D-88B5-46C9-82CD-2C1813529B21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA658E62-0FD1-4308-9016-1BB7759FBED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA658E62-0FD1-4308-9016-1BB7759FBED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA658E62-0FD1-4308-9016-1BB7759FBED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA658E62-0FD1-4308-9016-1BB7759FBED9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2724D8E5-9C78-4DFF-8837-32A5A5D18FBC} = {0CBC1276-6021-4B0E-8337-BEF45E69053C}
+		{C8730F6D-88B5-46C9-82CD-2C1813529B21} = {0CBC1276-6021-4B0E-8337-BEF45E69053C}
+		{BA658E62-0FD1-4308-9016-1BB7759FBED9} = {27186F05-FF08-4CFD-AF06-4141A60E16E1}
+	EndGlobalSection
+EndGlobal
