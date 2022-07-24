@@ -23,11 +23,16 @@ public abstract class BaseEventProcessor : IEventProcessor
         var request = new RestRequest();
         request.AddHeader("Authorization", $"Bearer {accessToken}");
         request.AddHeader("Content-Type", "application/json");
-        request.AddJsonBody(GetJsonBody(eventDto));
+        var jsonBody = await GetJsonBodyAsync(eventDto);
+        if (jsonBody == null)
+        {
+            return;
+        }
+        request.AddJsonBody(jsonBody);
         var response = await client.PostAsync(request);
         Logger.LogInformation(response.Content);
     }
 
     internal abstract string GetPostUrl(EventDto eventDto);
-    internal abstract object GetJsonBody(EventDto eventDto);
+    internal abstract Task<object?> GetJsonBodyAsync(EventDto eventDto);
 }

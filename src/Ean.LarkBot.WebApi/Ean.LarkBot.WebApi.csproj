@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\modules\AElf.Client.Token\AElf.Client.Token.csproj" />
       <ProjectReference Include="..\Ean.LarkBot.Core\Ean.LarkBot.Core.csproj" />
     </ItemGroup>
 

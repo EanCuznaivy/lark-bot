@@ -1,3 +1,4 @@
+using AElf.Client.Token;
 using Ean.LarkBot.Core;
 using Ean.LarkBot.WebApi.ContentProviders;
 using Microsoft.OpenApi.Models;
@@ -8,7 +9,8 @@ namespace Ean.LarkBot.WebApi;
 
 [DependsOn(
     typeof(AbpAspNetCoreModule),
-    typeof(LarkBotCoreModule)
+    typeof(LarkBotCoreModule),
+    typeof(AElfClientTokenModule)
 )]
 public class LarkBotWebApiModule : AbpModule
 {
@@ -27,6 +29,6 @@ public class LarkBotWebApiModule : AbpModule
             }
         );
 
-        services.AddTransient<IReplyContentProvider, TransferContentProvider>();
+        services.AddSingleton<IReplyContentProvider, TransferContentProvider>();
     }
 }

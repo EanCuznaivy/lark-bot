@@ -21,7 +21,7 @@ public class MessageReceiveV1Processor : BaseEventProcessor
         return $"{LarkBotConstants.Host}{LarkBotConstants.MessagesUrl}/{eventDto.Event.Message.MessageId}/reply";
     }
 
-    internal override object GetJsonBody(EventDto eventDto)
+    internal override async Task<object?> GetJsonBodyAsync(EventDto eventDto)
     {
         var text = eventDto.Event.Message.Content;
 
@@ -29,7 +29,13 @@ public class MessageReceiveV1Processor : BaseEventProcessor
         {
             if (replyContentProvider.KeyWords.Any(keyWord => text.Contains(keyWord)))
             {
-                text = replyContentProvider.GetText(eventDto);
+                var json = await replyContentProvider.GetTextAsync(eventDto);
+                if (json == string.Empty)
+                {
+                    return null;
+                }
+
+                text = json;
                 break;
             }
         }
