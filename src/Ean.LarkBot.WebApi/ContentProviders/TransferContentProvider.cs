@@ -1,6 +1,5 @@
 using System.Text;
 using System.Text.Json;
-using AElf.Client.Core;
 using AElf.Client.Token;
 using AElf.Contracts.MultiToken;
 using AElf.Types;
@@ -13,26 +12,16 @@ namespace Ean.LarkBot.WebApi.ContentProviders;
 public class TransferContentProvider : IReplyContentProvider
 {
     private readonly ITokenService _tokenService;
-    private readonly IAElfAccountProvider _accountProvider;
     public List<string> KeyWords => new() { "ELF_" };
 
-    private readonly List<string> _cache = new();
-
-    public TransferContentProvider(ITokenService tokenService, IAElfAccountProvider accountProvider)
+    public TransferContentProvider(ITokenService tokenService)
     {
         _tokenService = tokenService;
-        _accountProvider = accountProvider;
     }
 
     public async Task<string> GetTextAsync(EventDto eventDto)
     {
         var content = eventDto.Event.Message.Content;
-        if (_cache.Contains(eventDto.Event.Message.MessageId))
-        {
-            return string.Empty;
-        }
-
-        _cache.Add(eventDto.Event.Message.MessageId);
         var parameters = JsonSerializer.Deserialize<TextDto>(content)!.Text.Split(' ');
         var formattedAddress = parameters.First();
         if (!formattedAddress.TryParseTransferInfo(out var address, out var chainType)

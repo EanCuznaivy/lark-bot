@@ -9,7 +9,7 @@ namespace Ean.LarkBot.Core.Processors;
 public class MessageReceiveV1Processor : BaseEventProcessor
 {
     public override string EventType => "im.message.receive_v1";
-    private IEnumerable<IReplyContentProvider> _replyContentProviders;
+    private readonly IEnumerable<IReplyContentProvider> _replyContentProviders;
 
     public MessageReceiveV1Processor(IEnumerable<IReplyContentProvider> replyContentProviders)
     {
