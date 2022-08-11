@@ -18,6 +18,7 @@ public abstract class BaseEventProcessor : IEventProcessor
 
     public async Task ProcessAsync(string accessToken, EventDto eventDto)
     {
+        Logger.LogInformation($"New event: {eventDto.Event.Message.Content}");
         var url = GetPostUrl(eventDto);
         var client = new RestClient(url);
         var request = new RestRequest();

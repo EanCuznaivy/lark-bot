@@ -23,6 +23,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\Ean.LarkBot.Core\Ean.LarkBot.Core.csproj" />
+      <ProjectReference Include="..\..\src\Ean.LarkBot.QingYunKe\Ean.LarkBot.QingYunKe.csproj" />
+      <ProjectReference Include="..\..\src\Ean.Tapd\Ean.Tapd.csproj" />
     </ItemGroup>
 
 </Project>

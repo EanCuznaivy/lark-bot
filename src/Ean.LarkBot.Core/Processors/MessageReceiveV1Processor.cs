@@ -1,4 +1,7 @@
+using System.Text;
+using System.Text.Json;
 using Ean.LarkBot.Core.Models;
+using Ean.LarkBot.QingYunKe;
 using Volo.Abp.DependencyInjection;
 
 namespace Ean.LarkBot.Core.Processors;
@@ -10,10 +13,13 @@ public class MessageReceiveV1Processor : BaseEventProcessor
 {
     public override string EventType => "im.message.receive_v1";
     private readonly IEnumerable<IReplyContentProvider> _replyContentProviders;
+    private readonly IQingYunKeService _chatService;
 
-    public MessageReceiveV1Processor(IEnumerable<IReplyContentProvider> replyContentProviders)
+    public MessageReceiveV1Processor(IEnumerable<IReplyContentProvider> replyContentProviders,
+        IQingYunKeService chatService)
     {
         _replyContentProviders = replyContentProviders;
+        _chatService = chatService;
     }
 
     internal override string GetPostUrl(EventDto eventDto)
@@ -23,7 +29,21 @@ public class MessageReceiveV1Processor : BaseEventProcessor
 
     internal override async Task<object?> GetJsonBodyAsync(EventDto eventDto)
     {
+        //var text = await _chatService.ChatAsync(JsonSerializer.Deserialize<TextDto>(eventDto.Event.Message.Content)!
+        //.Text);
         var text = eventDto.Event.Message.Content;
+
+        if (eventDto.Event.Message.Content.Contains("@"))
+        {
+            return new
+            {
+                content = Encoding.UTF8.GetString(JsonSerializer.SerializeToUtf8Bytes(new TextDto
+                {
+                    Text = "弄啥？"
+                })),
+                msg_type = "text"
+            };
+        }
 
         foreach (var replyContentProvider in _replyContentProviders)
         {

@@ -1,4 +1,5 @@
 using Ean.LarkBot.Core.Processors;
+using Ean.LarkBot.QingYunKe;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Autofac;
@@ -9,7 +10,8 @@ namespace Ean.LarkBot.Core;
 
 [DependsOn(
     typeof(AbpAutofacModule),
-    typeof(AbpEventBusModule)
+    typeof(AbpEventBusModule),
+    typeof(LarkBotQingYunKeModule)
 )]
 public class LarkBotCoreModule : AbpModule
 {
